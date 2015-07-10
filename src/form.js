@@ -16,15 +16,16 @@ angular.module('angularPayments')
                     'cvc', 'name','addressLine1', 
                     'addressLine2', 'addressCity',
                     'addressState', 'addressZip',
-                    'addressCountry']
+                    'addressCountry'];
     
     var camelToSnake = function(str){
       return str.replace(/([A-Z])/g, function(m){
         return "_"+m.toLowerCase();
       });
-    }
+    };
 
-    var ret = {};
+    var ret = {},
+        i;
 
     for(i in possibleKeys){
         if(data.hasOwnProperty(possibleKeys[i])){
@@ -35,7 +36,7 @@ angular.module('angularPayments')
     ret['number'] = (ret['number'] || '').replace(/ /g,'');
 
     return ret;
-  }
+  };
 
   return {
     restrict: 'A',
@@ -45,7 +46,10 @@ angular.module('angularPayments')
           throw 'stripeForm requires that you have stripe.js installed. Include https://js.stripe.com/v2/ into your html.';
       }
 
-      var form = angular.element(elem);
+      var form = angular.element(elem),
+          expMonthUsed,
+          expYearUsed,
+          exp;
 
       form.bind('submit', function() {
 
@@ -53,9 +57,9 @@ angular.module('angularPayments')
         expYearUsed = scope.expYear ? true : false;
 
         if(!(expMonthUsed && expYearUsed)){
-          exp = Common.parseExpiry(scope.expiry)
-          scope.expMonth = exp.month
-          scope.expYear = exp.year
+          exp = Common.parseExpiry(scope.expiry);
+          scope.expMonth = exp.month;
+          scope.expYear = exp.year;
         }
 
         var button = form.find('button');
@@ -80,8 +84,8 @@ angular.module('angularPayments')
           button.prop('disabled', false);
         }
 
-        scope.expMonth = null;
-        scope.expYear  = null;
+        //scope.expMonth = null;
+        //scope.expYear  = null;
 
       });
     }

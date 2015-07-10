@@ -1,9 +1,10 @@
 {
-  "name": "angular-payments",
+  "name": "angular-payments-2",
   "version": "0.1.1",
-  "homepage": "https://github.com/laurihy/angular-payments",
+  "homepage": "https://github.com/olavsnoek/angular-payments",
   "authors": [
-    "Lauri Hynynen <@laurihy>"
+    "Lauri Hynynen <@laurihy>",
+    "Olav Snoek <@olavsnoek>"
   ],
   "main": "lib/angular-payments.js",
   "description": "Directive for formatting and validating credit card forms",
